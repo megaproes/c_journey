@@ -1,0 +1,10 @@
+{
+	"files.associations": {
+		"limits": "c",
+		"random": "c",
+		"gtest.h": "c",
+		"cmocka.h": "c",
+		"string.h": "c",
+		"*.с": "c"
+	}
+}
