@@ -5,6 +5,7 @@
 		"gtest.h": "c",
 		"cmocka.h": "c",
 		"string.h": "c",
-		"*.с": "c"
+		"*.с": "c",
+		"stdlib.h": "c"
 	}
 }
