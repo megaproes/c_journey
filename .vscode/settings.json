@@ -6,6 +6,9 @@
 		"cmocka.h": "c",
 		"string.h": "c",
 		"*.с": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"cstdlib": "c",
+		"stdarg.h": "c",
+		"setjmp.h": "c"
 	}
 }
