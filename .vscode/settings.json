@@ -9,6 +9,7 @@
 		"stdlib.h": "c",
 		"cstdlib": "c",
 		"stdarg.h": "c",
-		"setjmp.h": "c"
+		"setjmp.h": "c",
+		"stdbool.h": "c"
 	}
 }

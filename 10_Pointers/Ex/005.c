@@ -24,7 +24,7 @@ struct Node *createNode(int data)
 }
 
 // Function to insert a node at the front of the list
-struct Node* insertAtFront(struct Node **head, int data)
+struct Node *insertAtFront(struct Node **head, int data)
 {
     struct Node *new_node = createNode(data);
     if (*head == NULL)
@@ -36,12 +36,12 @@ struct Node* insertAtFront(struct Node **head, int data)
     new_node->next = *head;
     (*head)->prev = new_node;
     *head = new_node;
-    
+
     return new_node;
 }
 
 // Function to insert a node at the end of the list
-struct Node* insertAtEnd(struct Node **head, int data)
+struct Node *insertAtEnd(struct Node **head, int data)
 {
     // Create a new node
     struct Node *new_node = createNode(data);
@@ -50,7 +50,7 @@ struct Node* insertAtEnd(struct Node **head, int data)
     if (*head == NULL)
     {
         *head = new_node;
-        return;
+        return new_node;
     }
 
     // Traverse to the last node of the list
@@ -61,18 +61,63 @@ struct Node* insertAtEnd(struct Node **head, int data)
     // Update the next of the last node and prev of the new node
     current->next = new_node;
     new_node->prev = current;
-    
-     return new_node;
+
+    return new_node;
 }
 
 // Function to remove a node from the list
 void removeNode(struct Node **head, struct Node *nodeToRemove)
 {
-    
+    if (*head == NULL || nodeToRemove == NULL)
+    {
+        printf("Invalid operation: either the list is empty or the node to remove is NULL.\n");
+        return;
+    }
+
+    // Case 1: Removing the head node
+    if (*head == nodeToRemove)
+    {
+        *head = nodeToRemove->next; // Update head to the next node
+    }
+    // Case 2: Adjust the previous node's next pointer, if it exists
+    if (nodeToRemove->prev != NULL)
+    {
+        nodeToRemove->prev->next = nodeToRemove->next;
+    }
+
+    // Case 3: Adjust the next node's prev pointer, if it exists
+    if (nodeToRemove->next != NULL)
+    {
+        nodeToRemove->next->prev = nodeToRemove->prev;
+    }
+
+    free(nodeToRemove);
 }
 
 // Function to print the list from head to tail
-void printList(struct Node *head);
+void printList(struct Node *head)
+{
+    while (head->next != NULL)
+    {
+        printf("%i ", head->data);
+        head = head->next;
+    }
+    printf("%i ", head->data);
+    printf("\n\n");
+}
 
 // Function to print the list from tail to head (backwards)
-void printListReverse(struct Node *tail);
+void printListReverse(struct Node *head)
+{
+    // Traverse to the last node of the list
+    while (head->next != NULL)
+        head = head->next;
+
+    printf("%i ", head->data);
+    while (head->prev != NULL)
+    {
+        printf("%i ", head->data);
+        head = head->prev;
+    }
+    printf("\n\n");
+}

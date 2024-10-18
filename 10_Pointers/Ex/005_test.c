@@ -54,12 +54,49 @@ static void test_insertAtEnd(void **state)
     assert_ptr_equal(head->next->next->prev, head->next);
     assert_null(head->next->next->next);
 }
+void test_removeNode(void **state)
+{
+    struct Node *head = NULL;
 
+    struct Node *n1 = insertAtEnd(&head, 45);
+    struct Node *n2 = insertAtEnd(&head, 55);
+    struct Node *n3 = insertAtEnd(&head, 65);
+    struct Node *n4 = insertAtEnd(&head, 75);
+    struct Node *n5 = insertAtEnd(&head, 85);
+
+    removeNode(&head, n2);
+
+    // Ensure the list structure is correct after removal
+    assert_int_equal(n1->next->data, 65);
+    assert_ptr_equal(n1->next, n3);
+    assert_ptr_equal(n3->prev, n1);
+    assert_ptr_equal(n3->next, n4);
+
+    // n2 pointer is not guaranteed to be NULL, so remove this check
+}
+void test_print(void **state)
+{
+    struct Node *head = NULL;
+    
+    struct Node *n1 = insertAtEnd(&head, 45);
+    struct Node *n2 = insertAtEnd(&head, 55);
+    struct Node *n3 = insertAtEnd(&head, 65);
+    struct Node *n4 = insertAtEnd(&head, 75);
+    struct Node *n5 = insertAtEnd(&head, 85);
+    printf("In normal order:\t");
+    printList(head);
+    
+    printf("In reverse order:\t");
+    printListReverse(head);
+}
 int main(void)
 {
     const struct CMUnitTest tests[] = {
         cmocka_unit_test(test_insertAtFront),
         cmocka_unit_test(test_insertAtEnd),
+        cmocka_unit_test(test_removeNode), 
+        cmocka_unit_test(test_print)
+
     };
 
     return cmocka_run_group_tests(tests, NULL, NULL);
