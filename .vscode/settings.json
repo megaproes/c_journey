@@ -10,6 +10,7 @@
 		"cstdlib": "c",
 		"stdarg.h": "c",
 		"setjmp.h": "c",
-		"stdbool.h": "c"
+		"stdbool.h": "c",
+		"003.C": "cpp"
 	}
 }
