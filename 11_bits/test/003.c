@@ -23,6 +23,7 @@ int main()
 	packed_data |= 7 << 18;
 	printf("Packed data after setting type to 7: \n");
 	printBinary(packed_data);
+	
 	// Extracting 'type' from packed_data
 	unsigned int type_value = (packed_data >> 18) & 0xff;
 	printf("\nExtracted type value: %u\n", type_value);
