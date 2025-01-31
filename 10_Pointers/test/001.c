@@ -19,6 +19,8 @@ int main(void)
 	printf("Address in main after function: %p\n", ptr); // Still the same!
 
 	const char *textPtr = "A much, much longer string that takes up more memory.";
+	printf("%s", textPtr);
+	// textPtr[0] = 's';
 	textPtr = "A new string!";
 
 	const char *textPtr1 = "A much, much longer string that takes up more memory.";

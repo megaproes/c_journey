@@ -6,7 +6,7 @@ struct date
 	int month;
 	int day;
 	int year;
-};
+} date_idk;
 // Function to calculate tomorrow's date
 struct date dateUpdate(struct date today)
 {

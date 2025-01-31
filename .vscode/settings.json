@@ -11,6 +11,7 @@
 		"stdarg.h": "c",
 		"setjmp.h": "c",
 		"stdbool.h": "c",
-		"003.C": "cpp"
+		"003.C": "cpp",
+		"stdio.h": "c"
 	}
 }

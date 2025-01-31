@@ -1,5 +1,6 @@
 // Program to illustrate rotation of integers
 #include <stdio.h>
+unsigned int rotate(unsigned int value, int n);
 int main(void)
 {
 	unsigned int w1 = 0xabcdef00u, w2 = 0xffff1122u;
@@ -29,10 +30,12 @@ unsigned int rotate(unsigned int value, int n)
 {
 	unsigned int result, bits;
 	int bit_size = int_size();
-	    // scale down the shift count to a defined range
-	    if (n > 0)
-		   n = n % bit_size;
-	else n = -(-n % bit_size);
+	// scale down the shift count to a defined range
+	if (n > 0)
+		n = n % bit_size;
+	else
+		n = -(-n % bit_size);
+	
 	if (n == 0)
 		result = value;
 	else if (n > 0)
