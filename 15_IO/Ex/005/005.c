@@ -7,16 +7,13 @@ void handle_input(int *m, int *n, FILE **f_ptr, int argc, const char *argv[])
 	char in_file[256] = {0};
 	char buffer[256] = {0};
 
-	// 1) Determine the input file name
 	if (argc >= 2)
 	{
-		// Use argv[1] as the input file name
 		strncpy(in_file, argv[1], sizeof(in_file) - 1);
-		in_file[sizeof(in_file) - 1] = '\0'; // Ensure null termination
+		in_file[sizeof(in_file) - 1] = '\0';
 	}
 	else
 	{
-		// Prompt if not provided
 		printf("Enter input file name: ");
 		if (scanf("%255s", in_file) != 1)
 		{
@@ -25,7 +22,6 @@ void handle_input(int *m, int *n, FILE **f_ptr, int argc, const char *argv[])
 		}
 	}
 
-	// 2) Open the file
 	*f_ptr = fopen(in_file, "r");
 	if (*f_ptr == NULL)
 	{
@@ -33,30 +29,25 @@ void handle_input(int *m, int *n, FILE **f_ptr, int argc, const char *argv[])
 		exit(1);
 	}
 
-	// 3) Determine the column range
 	if (argc >= 3)
 	{
-		// Use argv[2] as the range (m:n, m-n, or m n)
 		strncpy(buffer, argv[2], sizeof(buffer) - 1);
 		buffer[sizeof(buffer) - 1] = '\0';
 	}
 	else
 	{
-		// Prompt if not provided
 		printf("Enter column range (m:n, m-n, m n): ");
-		if (scanf("%255s", buffer) != 1)
+		if (fgets(buffer, sizeof(buffer), stdin) == NULL)
 		{
 			fprintf(stderr, "Error reading range\n");
 			exit(1);
 		}
+		buffer[strcspn(buffer, "\n")] = '\0';
 	}
 
-	// 4) Parse the range
 	_Bool cond =
-	    (sscanf(buffer, "%d%*[:] %d", m, n) == 2) ||
-	    (sscanf(buffer, "%d - %d", m, n) == 2) ||
+	    (sscanf(buffer, "%d%*[ :-]%d", m, n) == 2) ||
 	    (sscanf(buffer, "%d %d", m, n) == 2);
-	// _Bool cond = sscanf(buffer, "%d %*[ :-] %d", m, n) == 2;
 	printf("Debug: [%s]\n", buffer);
 
 	if (!cond)
@@ -87,7 +78,7 @@ void handle_output(const int *m, const int *n, FILE *f_ptr)
 
 		// Use strcspn() to handle or strip the newline
 		size_t line_length = strcspn(buffer, "\n");
-
+		int printed = 0;
 		// Print chars from m to n (inclusive), but not beyond line_length
 		for (size_t i = *m; i <= (size_t)*n && i <= line_length; i++)
 			putc(buffer[i - 1], stdout);
