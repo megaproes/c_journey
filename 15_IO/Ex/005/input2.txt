@@ -1,0 +1,3 @@
+Extracting entire lines
+from this file
+is easy.

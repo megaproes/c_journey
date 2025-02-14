@@ -1,0 +1,3 @@
+Hello, World!
+Programming is fun.
+C is powerful.

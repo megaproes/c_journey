@@ -22,7 +22,7 @@ int main(void)
 		fprintf(stderr, "Error reading output filename.\n");
 		return 1;
 	}
-
+	
 	// Open input file
 	in = fopen(inName, "r");
 	if (in == NULL)

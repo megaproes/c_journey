@@ -1,0 +1,8 @@
+Red
+Circle
+Blue
+Square
+Green
+Triangle
+Yellow
+Purple
